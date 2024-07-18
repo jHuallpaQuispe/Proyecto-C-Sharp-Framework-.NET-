@@ -42,6 +42,8 @@ namespace App_Discos_2024
                 dgvDiscos.DataSource = listaDisco;
 
                 dgvDiscos.Columns["Imagen"].Visible = false;
+                dgvDiscos.Columns["Id"].Visible = false;
+
                 cargarImagen(listaDisco[0].Imagen);
 
             }

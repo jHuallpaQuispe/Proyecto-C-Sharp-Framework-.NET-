@@ -40,7 +40,7 @@
             this.cboSegundoEstilo = new System.Windows.Forms.ComboBox();
             this.cboTipoEdicion = new System.Windows.Forms.ComboBox();
             this.dtpLanzamiento = new System.Windows.Forms.DateTimePicker();
-            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.pbxDisco = new System.Windows.Forms.PictureBox();
             this.txtUrlImagen = new System.Windows.Forms.TextBox();
@@ -149,22 +149,23 @@
             this.dtpLanzamiento.Name = "dtpLanzamiento";
             this.dtpLanzamiento.Size = new System.Drawing.Size(270, 22);
             this.dtpLanzamiento.TabIndex = 11;
+            this.dtpLanzamiento.Value = new System.DateTime(2024, 7, 17, 0, 0, 0, 0);
             // 
-            // btnAgregar
+            // btnAceptar
             // 
-            this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(132, 266);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(91, 36);
-            this.btnAgregar.TabIndex = 12;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAceptar.Location = new System.Drawing.Point(158, 286);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(91, 36);
+            this.btnAceptar.TabIndex = 12;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // btnCancelar
             // 
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(383, 266);
+            this.btnCancelar.Location = new System.Drawing.Point(383, 286);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(91, 36);
             this.btnCancelar.TabIndex = 13;
@@ -174,9 +175,9 @@
             // 
             // pbxDisco
             // 
-            this.pbxDisco.Location = new System.Drawing.Point(499, 45);
+            this.pbxDisco.Location = new System.Drawing.Point(504, 45);
             this.pbxDisco.Name = "pbxDisco";
-            this.pbxDisco.Size = new System.Drawing.Size(299, 257);
+            this.pbxDisco.Size = new System.Drawing.Size(352, 277);
             this.pbxDisco.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxDisco.TabIndex = 14;
             this.pbxDisco.TabStop = false;
@@ -202,12 +203,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(874, 336);
+            this.ClientSize = new System.Drawing.Size(882, 351);
             this.Controls.Add(this.txtUrlImagen);
             this.Controls.Add(this.lblUrlImagen);
             this.Controls.Add(this.pbxDisco);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnAgregar);
+            this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.dtpLanzamiento);
             this.Controls.Add(this.cboTipoEdicion);
             this.Controls.Add(this.cboSegundoEstilo);
@@ -220,6 +221,10 @@
             this.Controls.Add(this.lblCantidadCanciones);
             this.Controls.Add(this.lblFechaLanzamiento);
             this.Controls.Add(this.lblTitulo);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(900, 398);
+            this.MinimizeBox = false;
             this.Name = "frmAltaDisco";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Agregar Disco";
@@ -244,7 +249,7 @@
         private System.Windows.Forms.ComboBox cboSegundoEstilo;
         private System.Windows.Forms.ComboBox cboTipoEdicion;
         private System.Windows.Forms.DateTimePicker dtpLanzamiento;
-        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.PictureBox pbxDisco;
         private System.Windows.Forms.TextBox txtUrlImagen;

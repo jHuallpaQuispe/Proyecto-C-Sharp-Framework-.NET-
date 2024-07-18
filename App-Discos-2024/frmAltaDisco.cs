@@ -20,6 +20,7 @@ namespace App_Discos_2024
         }
         public frmAltaDisco(Disco disco)
         {
+            //si se usa este contructor, es porque estamos modificando
             InitializeComponent();
             this.disco = disco;
             Text = "Modificar Disco";
@@ -33,10 +34,10 @@ namespace App_Discos_2024
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             DiscoBusiness business = new DiscoBusiness();
-            //Disco disco = new Disco();
 
             try
             {
+                //Verificamos si se modifica o no
                 if(this.disco == null)
                     this.disco=new Disco();
 
@@ -48,11 +49,18 @@ namespace App_Discos_2024
                 this.disco.SegundoEstilo = (Estilo)cboSegundoEstilo.SelectedItem;
                 this.disco.TipoEdicion = (TipoEdicion)cboTipoEdicion.SelectedItem;
 
-                business.Agregar(this.disco);
-                MessageBox.Show("Se Agrego Exitosamente..");
+                if(this.disco.Id != 0)
+                {
+                    business.modificar(this.disco);
+                    MessageBox.Show("Modificado Exitosamente..");
+                }
+                else
+                {
+                    business.Agregar(this.disco);
+                    MessageBox.Show("Se Agrego Exitosamente..");
+                }
+                
 
-                business.modificar(this.disco);
-                MessageBox.Show("Modificado Exitosamente..");
 
                 this.Close();
             }
@@ -70,9 +78,41 @@ namespace App_Discos_2024
             EstiloBusiness estilos = new EstiloBusiness();
             TipoEdicionBusiness TipoEdicion = new TipoEdicionBusiness();
 
-            cboEstilo.DataSource = estilos.listar();
-            cboSegundoEstilo.DataSource = estilos.listar();
-            cboTipoEdicion.DataSource = TipoEdicion.listar();
+            try
+            {
+                cboEstilo.DataSource = estilos.listar();
+                cboEstilo.ValueMember = "Id";
+                cboEstilo.DisplayMember = "Descripcion";
+
+                cboSegundoEstilo.DataSource = estilos.listar();
+                cboSegundoEstilo.ValueMember = "Id";
+                cboSegundoEstilo.DisplayMember= "Descripcion";
+
+                cboTipoEdicion.DataSource = TipoEdicion.listar();
+                cboTipoEdicion.ValueMember = "Id";
+                cboTipoEdicion.DisplayMember = "Descripcion";
+
+
+                //Verificamos si es para modificar o para agregar 
+                if(this.disco != null)
+                {
+                    txtTitulo.Text = this.disco.Titulo;
+                    dtpLanzamiento.Value = this.disco.FechaLanzamiento;
+                    txtCantCanciones.Text = this.disco.CantidadCanciones.ToString();
+                    txtUrlImagen.Text = this.disco.Imagen;
+                    cargarImagen(this.disco.Imagen);
+
+                    cboEstilo.SelectedValue = this.disco.Estilo.Id;
+                    cboSegundoEstilo.SelectedValue = this.disco.SegundoEstilo.Id;
+                    cboTipoEdicion.SelectedValue = this.disco.TipoEdicion.Id;
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         private void txtUrlImagen_Leave(object sender, EventArgs e)

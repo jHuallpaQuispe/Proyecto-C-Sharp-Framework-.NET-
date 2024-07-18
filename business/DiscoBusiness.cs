@@ -19,7 +19,7 @@ namespace business
 			{
 				conexion.ConnectionString = "server=.\\SQLEXPRESS; database=DISCOS_DB; integrated security=true";
 				comando.CommandType = System.Data.CommandType.Text;
-				comando.CommandText = "Select D.Titulo, D.FechaLanzamiento, D.CantidadCanciones, D.UrlImagenTapa, E.Descripcion Estilo, S.Descripcion SegundoEstilo, T.Descripcion Tipo_Edicion, D.Id from DISCOS D, ESTILOS  E, ESTILOS S, TIPOSEDICION T Where E.Id = D.IdEstilo and T.Id = D.IdTipoEdicion and S.Id = D.IdSegundoEstilo";
+				comando.CommandText = "Select D.Titulo, D.FechaLanzamiento, D.CantidadCanciones, D.UrlImagenTapa, E.Descripcion Estilo, S.Descripcion SegundoEstilo, T.Descripcion Tipo_Edicion, D.Id Id, IdEstilo, IdSegundoEstilo, IdTipoEdicion from DISCOS D, ESTILOS  E, ESTILOS S, TIPOSEDICION T Where E.Id = D.IdEstilo and T.Id = D.IdTipoEdicion and S.Id = D.IdSegundoEstilo";
 				comando.Connection = conexion;
 
 				conexion.Open();
@@ -29,6 +29,7 @@ namespace business
 				while (lector.Read())
 				{
 					Disco aux = new Disco();
+					aux.Id = (int)lector["Id"];
 					aux.Titulo = (string)lector["Titulo"];
 					aux.FechaLanzamiento = (DateTime)lector["FechaLanzamiento"];
 					aux.CantidadCanciones = (int)lector["CantidadCanciones"];
@@ -38,12 +39,15 @@ namespace business
 						aux.Imagen = (string)lector["UrlImagenTapa"];
 					
 					aux.Estilo = new Estilo();
+					aux.Estilo.Id = (int)lector["IdEstilo"];
 					aux.Estilo.Descripcion = (string)lector["Estilo"];
 
 					aux.SegundoEstilo = new Estilo();
+					aux.SegundoEstilo.Id = (int)lector["IdSegundoEstilo"];
 					aux.SegundoEstilo.Descripcion = (string)lector["SegundoEstilo"];
 
 					aux.TipoEdicion = new TipoEdicion();
+					aux.TipoEdicion.Id = (int)lector["IdTipoEdicion"];
 					aux.TipoEdicion.Descripcion = (string)lector["Tipo_Edicion"];
 					
 
@@ -92,14 +96,32 @@ namespace business
 
 		public void modificar(Disco disco)
 		{
+			AccesoDatos dato = new AccesoDatos();
+			
 			try
 			{
+				dato.setearConsulta("update DISCOS set Titulo = @titulo, FechaLanzamiento = @fecha, CantidadCanciones = @cantCanciones, UrlImagenTapa = @img, IdEstilo = @idEstilo, IdTipoEdicion = @idTipoEdicion, IdSegundoEstilo = @idSegundoEstilo Where Id = @id");
+				dato.Parametro("@titulo",disco.Titulo);
+                dato.Parametro("@fecha",disco.FechaLanzamiento);
+                dato.Parametro("@cantCanciones",disco.CantidadCanciones);
+                dato.Parametro("@img",disco.Imagen);
+                dato.Parametro("@idEstilo",disco.Estilo.Id);
+                dato.Parametro("@idTipoEdicion",disco.TipoEdicion.Id);
+                dato.Parametro("@idSegundoEstilo",disco.SegundoEstilo.Id);
+                dato.Parametro("@id",disco.Id);
+				
+				dato.ejecutarConsulta();
 
-			}
-			catch (Exception ex)
+            }
+            catch (Exception ex)
 			{
 
 				throw ex;
+			}
+			finally
+			{
+				dato.cerrarConexion();
+				
 			}
 		}
     }
