@@ -19,7 +19,7 @@ namespace business
 			{
 				conexion.ConnectionString = "server=.\\SQLEXPRESS; database=DISCOS_DB; integrated security=true";
 				comando.CommandType = System.Data.CommandType.Text;
-				comando.CommandText = "Select D.Titulo, D.FechaLanzamiento, D.CantidadCanciones, D.UrlImagenTapa, E.Descripcion Estilo, S.Descripcion SegundoEstilo, T.Descripcion Tipo_Edicion, D.Id Id, IdEstilo, IdSegundoEstilo, IdTipoEdicion from DISCOS D, ESTILOS  E, ESTILOS S, TIPOSEDICION T Where E.Id = D.IdEstilo and T.Id = D.IdTipoEdicion and S.Id = D.IdSegundoEstilo";
+				comando.CommandText = "Select D.Titulo, D.FechaLanzamiento, D.CantidadCanciones, D.UrlImagenTapa, E.Descripcion Estilo, S.Descripcion SegundoEstilo, T.Descripcion Tipo_Edicion, D.Id Id, IdEstilo, IdSegundoEstilo, IdTipoEdicion from DISCOS D, ESTILOS  E, ESTILOS S, TIPOSEDICION T Where E.Id = D.IdEstilo and T.Id = D.IdTipoEdicion and S.Id = D.IdSegundoEstilo and D.Activo = 1";
 				comando.Connection = conexion;
 
 				conexion.Open();
@@ -110,7 +110,7 @@ namespace business
                 dato.Parametro("@idSegundoEstilo",disco.SegundoEstilo.Id);
                 dato.Parametro("@id",disco.Id);
 				
-				dato.ejecutarConsulta();
+				dato.ejecutarAccion();
 
             }
             catch (Exception ex)
@@ -122,6 +122,50 @@ namespace business
 			{
 				dato.cerrarConexion();
 				
+			}
+		}
+
+		public void eliminarFisico (int id)
+		{
+			AccesoDatos dato = new AccesoDatos();
+
+			try
+			{
+                dato.setearConsulta("delete DISCOS where id = @id");
+                dato.Parametro("@id", id);
+
+				dato.ejecutarAccion();
+            }
+			catch (Exception ex)
+			{
+
+				throw ex;
+			}
+			finally
+			{
+				dato.cerrarConexion();
+			}
+			
+		}
+
+		public void eliminarLogico(int id)
+		{
+			AccesoDatos dato = new AccesoDatos ();
+			try
+			{
+				dato.setearConsulta("update DISCOS set Activo = 0 where Id = @id");
+				dato.Parametro("@id", id);
+				dato.ejecutarAccion();
+				
+			}
+			catch (Exception ex)
+			{
+
+				throw ex;
+			}
+			finally
+			{
+				dato.cerrarConexion() ;
 			}
 		}
     }
