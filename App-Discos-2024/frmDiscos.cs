@@ -87,17 +87,17 @@ namespace App_Discos_2024
             cargar();
         }
 
-        private void btnEliminacionFisico_Click(object sender, EventArgs e)
+        private void btnEliminarFisico_Click(object sender, EventArgs e)
         {
             eliminar();
         }
 
-        private void btnEliminacionLogico_Click(object sender, EventArgs e)
+
+        private void btnEliminarLogico_Click(object sender, EventArgs e)
         {
             eliminar(true);
         }
-
-        private void eliminar( bool logico = false)
+        private void eliminar(bool logico = false)
         {
             //Encapsulamos el codigo porque se repetiria en los dos evente de eliminar
             DiscoBusiness business = new DiscoBusiness();
