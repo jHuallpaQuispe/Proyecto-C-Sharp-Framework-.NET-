@@ -27,9 +27,15 @@ namespace App_Discos_2024
 
         private void dgvDiscos_SelectionChanged(object sender, EventArgs e)
         {
-            Disco seleccionado=(Disco)dgvDiscos.CurrentRow.DataBoundItem;
+            //Nos daba un error de SelectedIndexChanged
 
-            cargarImagen(seleccionado.Imagen);
+            if (dgvDiscos.CurrentRow != null)
+            {
+                Disco seleccionado=(Disco)dgvDiscos.CurrentRow.DataBoundItem;
+                cargarImagen(seleccionado.Imagen);
+
+            }
+
         }
 
         private void cargar()
@@ -41,8 +47,7 @@ namespace App_Discos_2024
                 listaDisco = business.listar();
                 dgvDiscos.DataSource = listaDisco;
 
-                dgvDiscos.Columns["Imagen"].Visible = false;
-                dgvDiscos.Columns["Id"].Visible = false;
+                quitarVisibilidad();
 
                 cargarImagen(listaDisco[0].Imagen);
 
@@ -52,6 +57,12 @@ namespace App_Discos_2024
 
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void quitarVisibilidad()
+        {
+            dgvDiscos.Columns["Imagen"].Visible = false;
+            dgvDiscos.Columns["Id"].Visible = false;
         }
         private void cargarImagen(string imagen)
         {
@@ -126,6 +137,31 @@ namespace App_Discos_2024
 
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            List<Disco> listaFiltrada;
+            string filtro = txtFiltro.Text;
+
+            if(filtro != "")
+            {
+                
+                listaFiltrada = listaDisco.FindAll(x => x.Titulo.ToLower().Contains(txtFiltro.Text.ToLower()) ||
+                                                   x.Estilo.ToString().ToLower().Contains(txtFiltro.Text.ToLower()) ||
+                                                   x.SegundoEstilo.ToString().ToLower().Contains(txtFiltro.Text.ToLower()) ||
+                                                   x.TipoEdicion.ToString().ToLower().Contains(txtFiltro.Text.ToLower()));
+
+            }
+            else
+            {
+                listaFiltrada = listaDisco;
+            }
+
+            dgvDiscos.DataSource = null; // Esto limpia la lista
+            dgvDiscos.DataSource = listaFiltrada;
+            quitarVisibilidad();
+
         }
     }
 }
