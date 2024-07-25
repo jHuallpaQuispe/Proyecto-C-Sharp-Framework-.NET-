@@ -141,12 +141,19 @@ namespace App_Discos_2024
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            
+
+        }
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
             List<Disco> listaFiltrada;
             string filtro = txtFiltro.Text;
 
-            if(filtro != "")
+            //Para que filtre a partir de n letras
+            if (filtro.Length >= 2)
             {
-                
+
                 listaFiltrada = listaDisco.FindAll(x => x.Titulo.ToLower().Contains(txtFiltro.Text.ToLower()) ||
                                                    x.Estilo.ToString().ToLower().Contains(txtFiltro.Text.ToLower()) ||
                                                    x.SegundoEstilo.ToString().ToLower().Contains(txtFiltro.Text.ToLower()) ||
@@ -161,7 +168,6 @@ namespace App_Discos_2024
             dgvDiscos.DataSource = null; // Esto limpia la lista
             dgvDiscos.DataSource = listaFiltrada;
             quitarVisibilidad();
-
         }
     }
 }

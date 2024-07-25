@@ -115,21 +115,22 @@
             this.lblFiltro.AutoSize = true;
             this.lblFiltro.Location = new System.Drawing.Point(18, 40);
             this.lblFiltro.Name = "lblFiltro";
-            this.lblFiltro.Size = new System.Drawing.Size(42, 16);
+            this.lblFiltro.Size = new System.Drawing.Size(90, 16);
             this.lblFiltro.TabIndex = 6;
-            this.lblFiltro.Text = "Filtro: ";
+            this.lblFiltro.Text = "Filtro Rápido: ";
             // 
             // txtFiltro
             // 
-            this.txtFiltro.Location = new System.Drawing.Point(66, 37);
+            this.txtFiltro.Location = new System.Drawing.Point(114, 37);
             this.txtFiltro.Name = "txtFiltro";
-            this.txtFiltro.Size = new System.Drawing.Size(244, 22);
+            this.txtFiltro.Size = new System.Drawing.Size(267, 22);
             this.txtFiltro.TabIndex = 7;
+            this.txtFiltro.TextChanged += new System.EventHandler(this.txtFiltro_TextChanged);
             // 
             // btnBuscar
             // 
             this.btnBuscar.BackColor = System.Drawing.Color.Gold;
-            this.btnBuscar.Location = new System.Drawing.Point(316, 34);
+            this.btnBuscar.Location = new System.Drawing.Point(821, 473);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(101, 29);
             this.btnBuscar.TabIndex = 8;
@@ -141,7 +142,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1369, 456);
+            this.ClientSize = new System.Drawing.Size(1369, 553);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtFiltro);
             this.Controls.Add(this.lblFiltro);
