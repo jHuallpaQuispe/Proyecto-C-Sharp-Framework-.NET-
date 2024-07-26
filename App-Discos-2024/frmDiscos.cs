@@ -22,7 +22,14 @@ namespace App_Discos_2024
         private void frmDiscos_Load(object sender, EventArgs e)
         {
             cargar();
-            
+
+            cboCampo.Items.Add("Título");
+            cboCampo.Items.Add("Cantidad de Canciones");
+            cboCampo.Items.Add("Estilo");
+            cboCampo.Items.Add("Tipo de Edición");
+
+
+
         }
 
         private void dgvDiscos_SelectionChanged(object sender, EventArgs e)
@@ -141,7 +148,28 @@ namespace App_Discos_2024
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            
+            DiscoBusiness business = new DiscoBusiness();
+            try
+            {
+                if (cboCampo.SelectedItem == null)
+                {
+                    MessageBox.Show("Selecciona el campo","Advertencia",MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    string campo = cboCampo.SelectedItem.ToString();
+                    string condicion = cboCondicion.SelectedItem.ToString();
+                    string busqueda = txtbusqueda.Text;
+                    dgvDiscos.DataSource = business.filtrar(campo, condicion, busqueda);
+                }
+
+
+            }
+            catch (Exception ex )
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
 
         }
 
@@ -168,6 +196,33 @@ namespace App_Discos_2024
             dgvDiscos.DataSource = null; // Esto limpia la lista
             dgvDiscos.DataSource = listaFiltrada;
             quitarVisibilidad();
+        }
+
+        private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DiscoBusiness business = new DiscoBusiness();
+
+            string campo = cboCampo.Text;
+
+            if(campo == "Cantidad de Canciones")
+            {
+                cboCondicion.Items.Clear();
+                cboCondicion.Items.Add("Mayor a");
+                cboCondicion.Items.Add("Menor a");
+                cboCondicion.Items.Add("Igual a");
+
+            }
+            else
+            {
+                cboCondicion.Items.Clear();
+                cboCondicion.Items.Add("Comienza con");
+                cboCondicion.Items.Add("Termina con");
+                cboCondicion.Items.Add("Contiene");
+
+            }
+            cboCondicion.SelectedIndex = 0;
+
+
         }
     }
 }

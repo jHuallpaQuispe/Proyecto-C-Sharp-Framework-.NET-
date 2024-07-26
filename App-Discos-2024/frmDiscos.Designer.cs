@@ -37,6 +37,12 @@
             this.lblFiltro = new System.Windows.Forms.Label();
             this.txtFiltro = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.lblCampo = new System.Windows.Forms.Label();
+            this.cboCampo = new System.Windows.Forms.ComboBox();
+            this.cboCondicion = new System.Windows.Forms.ComboBox();
+            this.lblCondicion = new System.Windows.Forms.Label();
+            this.txtbusqueda = new System.Windows.Forms.TextBox();
+            this.lblBusqueda = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDiscos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDisco)).BeginInit();
             this.SuspendLayout();
@@ -45,7 +51,7 @@
             // 
             this.dgvDiscos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDiscos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvDiscos.Location = new System.Drawing.Point(21, 73);
+            this.dgvDiscos.Location = new System.Drawing.Point(21, 152);
             this.dgvDiscos.Name = "dgvDiscos";
             this.dgvDiscos.RowHeadersWidth = 51;
             this.dgvDiscos.RowTemplate.Height = 24;
@@ -56,7 +62,7 @@
             // 
             // pbxDisco
             // 
-            this.pbxDisco.Location = new System.Drawing.Point(945, 73);
+            this.pbxDisco.Location = new System.Drawing.Point(945, 152);
             this.pbxDisco.Name = "pbxDisco";
             this.pbxDisco.Size = new System.Drawing.Size(412, 326);
             this.pbxDisco.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -66,7 +72,7 @@
             // btnAgregar
             // 
             this.btnAgregar.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnAgregar.Location = new System.Drawing.Point(21, 405);
+            this.btnAgregar.Location = new System.Drawing.Point(21, 484);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(101, 35);
             this.btnAgregar.TabIndex = 2;
@@ -78,7 +84,7 @@
             // 
             this.btnModificar.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnModificar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnModificar.Location = new System.Drawing.Point(128, 405);
+            this.btnModificar.Location = new System.Drawing.Point(128, 484);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(101, 35);
             this.btnModificar.TabIndex = 3;
@@ -90,7 +96,7 @@
             // 
             this.btnEliminarFisico.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnEliminarFisico.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnEliminarFisico.Location = new System.Drawing.Point(235, 405);
+            this.btnEliminarFisico.Location = new System.Drawing.Point(235, 484);
             this.btnEliminarFisico.Name = "btnEliminarFisico";
             this.btnEliminarFisico.Size = new System.Drawing.Size(144, 35);
             this.btnEliminarFisico.TabIndex = 4;
@@ -102,7 +108,7 @@
             // 
             this.btnEliminarLogico.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnEliminarLogico.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnEliminarLogico.Location = new System.Drawing.Point(385, 405);
+            this.btnEliminarLogico.Location = new System.Drawing.Point(385, 484);
             this.btnEliminarLogico.Name = "btnEliminarLogico";
             this.btnEliminarLogico.Size = new System.Drawing.Size(144, 35);
             this.btnEliminarLogico.TabIndex = 5;
@@ -113,15 +119,15 @@
             // lblFiltro
             // 
             this.lblFiltro.AutoSize = true;
-            this.lblFiltro.Location = new System.Drawing.Point(18, 40);
+            this.lblFiltro.Location = new System.Drawing.Point(18, 38);
             this.lblFiltro.Name = "lblFiltro";
-            this.lblFiltro.Size = new System.Drawing.Size(90, 16);
+            this.lblFiltro.Size = new System.Drawing.Size(123, 16);
             this.lblFiltro.TabIndex = 6;
-            this.lblFiltro.Text = "Filtro Rápido: ";
+            this.lblFiltro.Text = "Busqueda Rápida: ";
             // 
             // txtFiltro
             // 
-            this.txtFiltro.Location = new System.Drawing.Point(114, 37);
+            this.txtFiltro.Location = new System.Drawing.Point(147, 35);
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(267, 22);
             this.txtFiltro.TabIndex = 7;
@@ -130,19 +136,80 @@
             // btnBuscar
             // 
             this.btnBuscar.BackColor = System.Drawing.Color.Gold;
-            this.btnBuscar.Location = new System.Drawing.Point(821, 473);
+            this.btnBuscar.Location = new System.Drawing.Point(809, 80);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(101, 29);
+            this.btnBuscar.Size = new System.Drawing.Size(114, 28);
             this.btnBuscar.TabIndex = 8;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
+            // lblCampo
+            // 
+            this.lblCampo.AutoSize = true;
+            this.lblCampo.Location = new System.Drawing.Point(19, 87);
+            this.lblCampo.Name = "lblCampo";
+            this.lblCampo.Size = new System.Drawing.Size(54, 16);
+            this.lblCampo.TabIndex = 9;
+            this.lblCampo.Text = "Campo:";
+            // 
+            // cboCampo
+            // 
+            this.cboCampo.BackColor = System.Drawing.SystemColors.Window;
+            this.cboCampo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCampo.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.cboCampo.FormattingEnabled = true;
+            this.cboCampo.Location = new System.Drawing.Point(79, 83);
+            this.cboCampo.Name = "cboCampo";
+            this.cboCampo.Size = new System.Drawing.Size(162, 24);
+            this.cboCampo.TabIndex = 10;
+            this.cboCampo.SelectedIndexChanged += new System.EventHandler(this.cboCampo_SelectedIndexChanged);
+            // 
+            // cboCondicion
+            // 
+            this.cboCondicion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCondicion.FormattingEnabled = true;
+            this.cboCondicion.Location = new System.Drawing.Point(351, 84);
+            this.cboCondicion.Name = "cboCondicion";
+            this.cboCondicion.Size = new System.Drawing.Size(162, 24);
+            this.cboCondicion.TabIndex = 12;
+            // 
+            // lblCondicion
+            // 
+            this.lblCondicion.AutoSize = true;
+            this.lblCondicion.Location = new System.Drawing.Point(275, 87);
+            this.lblCondicion.Name = "lblCondicion";
+            this.lblCondicion.Size = new System.Drawing.Size(70, 16);
+            this.lblCondicion.TabIndex = 11;
+            this.lblCondicion.Text = "Condición:";
+            // 
+            // txtbusqueda
+            // 
+            this.txtbusqueda.Location = new System.Drawing.Point(643, 83);
+            this.txtbusqueda.Name = "txtbusqueda";
+            this.txtbusqueda.Size = new System.Drawing.Size(160, 22);
+            this.txtbusqueda.TabIndex = 13;
+            // 
+            // lblBusqueda
+            // 
+            this.lblBusqueda.AutoSize = true;
+            this.lblBusqueda.Location = new System.Drawing.Point(565, 86);
+            this.lblBusqueda.Name = "lblBusqueda";
+            this.lblBusqueda.Size = new System.Drawing.Size(72, 16);
+            this.lblBusqueda.TabIndex = 14;
+            this.lblBusqueda.Text = "Busqueda:";
+            // 
             // frmDiscos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1369, 553);
+            this.ClientSize = new System.Drawing.Size(1369, 555);
+            this.Controls.Add(this.lblBusqueda);
+            this.Controls.Add(this.txtbusqueda);
+            this.Controls.Add(this.cboCondicion);
+            this.Controls.Add(this.lblCondicion);
+            this.Controls.Add(this.cboCampo);
+            this.Controls.Add(this.lblCampo);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtFiltro);
             this.Controls.Add(this.lblFiltro);
@@ -174,6 +241,12 @@
         private System.Windows.Forms.Label lblFiltro;
         private System.Windows.Forms.TextBox txtFiltro;
         private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.Label lblCampo;
+        private System.Windows.Forms.ComboBox cboCampo;
+        private System.Windows.Forms.ComboBox cboCondicion;
+        private System.Windows.Forms.Label lblCondicion;
+        private System.Windows.Forms.TextBox txtbusqueda;
+        private System.Windows.Forms.Label lblBusqueda;
     }
 }
 
